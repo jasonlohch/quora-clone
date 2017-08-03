@@ -24,5 +24,5 @@ end
 delete '/answers/:id' do
 	@answer = Answer.find(params[:id])
 	@answer.destroy
-	redirect '/questions/view'
+	redirect "/questions/#{@answer.question.id}"
 end

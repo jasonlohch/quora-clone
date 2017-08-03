@@ -17,7 +17,7 @@ end
 
 post '/answers/:id/downvote' do
 	@answer = Answer.find(params[:id])
-	answer_vote = AnswerVote.find_by(user_id: current_user.id, answer_if: params[:id])
+	answer_vote = AnswerVote.find_by(user_id: current_user.id, answer_id: params[:id])
 		if !answer_vote.nil?
 			if answer_vote.updown == false
 				answer_vote.destroy
