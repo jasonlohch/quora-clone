@@ -1,0 +1,64 @@
+<h1>Quora Clone</h1>
+
+<h2><%= @question.question_description %></h2>
+	<p>Question submitted by: <%= @question.user.username  %></p>
+
+	<% if @question.user == current_user %>
+	<form method="get" action='/questions/<%= @question.id %>/edit_question'><button type="submit">Edit</button>
+	</form>
+	<% end %>
+
+	<table class="table">
+	<tr>
+		<td><form action="/questions/<%= @question.id %>/upvote" method="post">
+		<input type="submit" value="Upvote <%= count_question_upvotes(@question) %>">
+		</form></td>
+		<td><form action="/questions/<%= @question.id %>/downvote" method="post">
+		<input type="submit" value="Downvote <%= count_question_downvotes(@question) %>">
+		</form></td>
+	</tr>
+	</table>
+
+<p><%= @message if @message %></p>
+
+<br>
+<h3>Answers:</h3>
+<ol>
+<% @answers.each do |answer| %>
+<li><%= answer.answer_description %>
+	<br><p>Submitted by: <%= User.find(answer.user_id).username %></p>
+
+	<% author_id = answer.user_id %>
+	<% if author_id == current_user.id %>
+	<table class="table">
+	<tr>
+	<td><form method="get" action='/answers/<%= answer.id %>/edit_answer'><button type="submit">Edit</button>
+	</form></td>
+	<td><form method="get" action='/answers/<%= answer.id %>/delete_answer'><button type="submit">Delete</button>
+	</form></td>
+	<% end %>
+	</tr>
+	</table>
+	<table class="table">
+		<tr>
+		<td><form action="/answers/<%= answer.id %>/upvote" method="post">
+		<input type="submit" value="Upvote <%= count_answer_upvotes(answer) %>">
+		</form></td>
+		<td><form action="/answers/<%= answer.id %>/downvote" method="post">
+		<input type="submit" value="Downvote <%= count_answer_downvotes(answer) %>">
+		</form></td>
+	</tr>
+	</table>
+		<%= user_voted?(current_user.id,answer) %>
+</li>
+<% end %>
+</ol>
+
+	<form action="/questions/<%= @question.id %>/answers" method="post">
+		<textarea type="text" name="answer" class="text-form" placeholder="Your answer"></textarea><br>
+		<input type="submit" value="submit">
+	</form>
+		
+<form method="get" action ="/home">
+<input type="submit" value="Back to Home">
+</form>	

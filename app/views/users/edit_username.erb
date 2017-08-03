@@ -1,0 +1,15 @@
+<h1>Quora Clone</h1>
+
+<p><%= @errors if @errors %>. Please enter a different username.</p>
+<form method="post" action='/users/<%= @user.id %>/edit_username'>
+	<p>Update your new username:</p><input type="text" name="user[username]" value="<%=@user.username%>"></form>
+    <input type="submit" value="Submit">
+</form>
+
+
+<form method="get" action ="/users/:id/account_settings">
+<input type="submit" value="Back to Account Settings">
+</form>
+<form method="get" action ="/home">
+<input type="submit" value="Back to Home">
+</form>

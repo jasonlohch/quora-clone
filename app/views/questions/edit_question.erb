@@ -1,0 +1,14 @@
+<h1>Quora Clone</h1>
+
+<h3>Update your question:</h3>
+<form method="post" action='/questions/<%= @question.id %>/edit_question'>
+	<textarea type="text" name="question[question_description]" value="<%=@question.question_description%>"placeholder=""></textarea><br>
+	<input type="submit" value="submit">
+</form>
+
+<form method="get" action ="/users/:id/account_settings">
+<input type="submit" value="Back to Account Settings">
+</form>
+<form method="get" action ="/home">
+<input type="submit" value="Back to Home">
+</form>

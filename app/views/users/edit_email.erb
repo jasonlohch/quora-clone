@@ -1,0 +1,15 @@
+<h1>Quora Clone</h1>
+
+<p><%= @errors if @errors %>. Please enter a valid email address.</p>
+
+<form method="post" action='/users/<%= @user.id %>/edit_email'>
+	<p>Update your new email:</p><input type="text" name="user[email]" value="<%=@user.email%>"></form>
+    <input type="submit" value="Submit">
+</form>
+
+<form method="get" action ="/users/:id/account_settings">
+<input type="submit" value="Back to Account Settings">
+</form>
+<form method="get" action ="/home">
+<input type="submit" value="Back to Home">
+</form>

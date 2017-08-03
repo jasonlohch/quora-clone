@@ -1,0 +1,13 @@
+<h1>Quora Clone</h1>
+
+<h2><%= @answer.answer_description %></h2>
+<h3>Edit your answer:</h3>
+<form method="post" action='/answers/<%= @answer.id %>/edit_answer'>
+	<textarea type="text" name="answer[answer_description]" value="<%=@answer.answer_description%>" placeholder=""></textarea><br>
+	<input type="submit" value="submit">
+</form>
+
+
+<form method="get" action ="/home">
+<input type="submit" value="Back to Home">
+</form>
